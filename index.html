@@ -702,14 +702,33 @@
       border-radius: 8px;
       border: 1px solid var(--border-color);
       overflow-x: auto;
+      overflow-y: auto;
+      max-height: 480px;
       font-family: 'Fira Code', monospace;
       font-size: 0.85rem;
       line-height: 1.6;
       color: #9cdcfe;
+      white-space: pre;
+      word-wrap: normal;
+    }
+
+    .code-container code {
+      font-family: 'Fira Code', monospace;
+      white-space: pre;
+      display: block;
     }
 
     .code-container.active-view {
       display: block;
+    }
+
+    /* Concept accordion code blocks: always scrollable */
+    .concept-accordion-body pre {
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      max-height: 320px;
+      white-space: pre !important;
+      word-wrap: normal !important;
     }
 
     /* Concepts Container styling */
@@ -847,16 +866,20 @@
     }
 
     .eval-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      padding-right: 5rem;
+      font-size: 1.4rem;
+      margin-bottom: 0;
+      padding-right: 0;
     }
 
     .eval-card p {
       color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .eval-card-header:hover h3 {
+      color: var(--accent-primary);
     }
 
     .eval-interactive-btn {
@@ -2043,6 +2066,29 @@
     }
 
     /* Responsive Design */
+    /* Tech Tab Buttons (used in testing section) */
+    .tech-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    .tech-tab:hover {
+      background: rgba(14, 255, 239, 0.05);
+      color: var(--accent-primary);
+      border-color: rgba(14, 255, 239, 0.3);
+    }
+    .tech-tab.active {
+      background: rgba(14, 255, 239, 0.08);
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -2153,7 +2199,7 @@
               <button onclick="openEvalFromNav('eval2')">Evaluation 2</button>
             </li>
             <li class="dropdown-item">
-              <button onclick="openEvalFromNav('eval3')">Evaluation 3</button>
+              <button onclick="openEvalFromNav('eval3')">Music Concert Management System</button>
             </li>
             <li class="dropdown-item">
               <button onclick="openEvalFromNav('eval4')">Evaluation 4</button>
@@ -2322,27 +2368,75 @@
       </section>
 
       <!-- ========================================================
-           PAGE 2: CORE LEARNINGS SECTION
+           PAGE 2: ABOUT ME / CORE LEARNINGS SECTION
            ======================================================== -->
       <section id="learnings" class="content-section">
-        <h2 class="section-title">Core Web Technology Learnings</h2>
-        <p class="section-subtitle" style="margin-bottom: 2rem;">This section documents my technical progression across the full-stack ecosystem, covering the core principles of structure and style with HTML and CSS, dynamic client-side logic in JavaScript, and building scalable server-side architectures using Node.js and React.</p>
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">Computer Science student at KLE Technological University with a strong focus on full-stack web development and modern software engineering practices.</p>
 
-        <!-- Learnings Overview Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
-          <div class="glass-card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
-            <h4 style="color: var(--accent-primary); margin: 0 0 0.5rem 0; font-family: 'Outfit', sans-serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-graduation-cap"></i> Learning & Improvement</h4>
-            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin: 0;">I actively continue learning to improve my skills and stay updated with new tools and practices. I use platforms like Coursera, Udemy, and edX for structured learning and refer to resources such as MDN Web Docs, W3Schools, and Stack Overflow when solving technical problems.</p>
+        <!-- About Me Clean Grid -->
+        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; margin-bottom: 2.5rem; align-items: start;">
+
+          <!-- Left: Identity + Summary -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Name & Identity Card -->
+            <div class="glass-card" style="padding: 1.75rem;">
+              <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--bg-primary); flex-shrink: 0;">SR</div>
+                <div>
+                  <h3 style="font-size: 1.4rem; margin: 0 0 0.2rem 0; font-family: 'Outfit', sans-serif; color: var(--text-main);">Subhash Reddy</h3>
+                  <p style="font-size: 0.8rem; font-family: 'Fira Code', monospace; color: var(--accent-primary); margin: 0; text-shadow: var(--text-glow);">USN: 01FE24BCS094</p>
+                </div>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin: 0;">A dedicated Computer Science and Engineering student with hands-on experience in full-stack web development. I build responsive, interactive web applications using the MERN stack and enjoy solving real-world problems through clean, efficient code. My academic projects span from static HTML/CSS mockups to Node.js-powered backends with SQL databases.</p>
+            </div>
+
+            <!-- Education Card -->
+            <div class="glass-card" style="padding: 1.75rem;">
+              <h4 style="color: var(--accent-secondary); margin: 0 0 1rem 0; font-family: 'Outfit', sans-serif; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; text-shadow: var(--purple-glow);"><i class="fa-solid fa-graduation-cap"></i> Education</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <p style="font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0;">KLE Technological University</p>
+                <p style="font-size: 0.875rem; color: var(--accent-primary); margin: 0; font-family: 'Fira Code', monospace;">B.E. — Computer Science &amp; Engineering</p>
+                <p style="font-size: 0.825rem; color: var(--text-muted); margin: 0;">4th Semester &bull; USN: 01FE24BCS094</p>
+              </div>
+            </div>
           </div>
-          <div class="glass-card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
-            <h4 style="color: var(--accent-primary); margin: 0 0 0.5rem 0; font-family: 'Outfit', sans-serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-laptop-code"></i> Technical Skills</h4>
-            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin: 0;">I have worked with core web technologies such as HTML, CSS, JavaScript, and Python to create responsive and interactive web pages. I have also explored React for building dynamic user interfaces and Node.js with Express for handling server-side logic. Version control using Git has been an important part of managing and tracking my work.</p>
-          </div>
-          <div class="glass-card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
-            <h4 style="color: var(--accent-primary); margin: 0 0 0.5rem 0; font-family: 'Outfit', sans-serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-brain"></i> Work Style & Strengths</h4>
-            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin: 0;">I approach problems with a logical and analytical mindset and enjoy breaking down complex tasks into simpler steps. I am comfortable working both independently and in teams, communicate ideas clearly, and stay organized while handling assignments and deadlines.</p>
+
+          <!-- Right: Technical Skills + Career Interests -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Technical Skills -->
+            <div class="glass-card" style="padding: 1.75rem;">
+              <h4 style="color: var(--accent-primary); margin: 0 0 1rem 0; font-family: 'Outfit', sans-serif; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-laptop-code"></i> Technical Skills</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="tech-pill highlight" style="font-size: 0.78rem;">HTML5</span>
+                <span class="tech-pill highlight" style="font-size: 0.78rem;">CSS3</span>
+                <span class="tech-pill highlight" style="font-size: 0.78rem;">JavaScript (ES6+)</span>
+                <span class="tech-pill highlight" style="font-size: 0.78rem;">React.js</span>
+                <span class="tech-pill highlight" style="font-size: 0.78rem;">Node.js</span>
+                <span class="tech-pill" style="font-size: 0.78rem;">Express.js</span>
+                <span class="tech-pill" style="font-size: 0.78rem;">MongoDB</span>
+                <span class="tech-pill" style="font-size: 0.78rem;">MySQL / SQL</span>
+                <span class="tech-pill" style="font-size: 0.78rem;">Git &amp; GitHub</span>
+                <span class="tech-pill" style="font-size: 0.78rem;">REST APIs</span>
+              </div>
+            </div>
+
+            <!-- Career Interests -->
+            <div class="glass-card" style="padding: 1.75rem;">
+              <h4 style="color: var(--accent-secondary); margin: 0 0 1rem 0; font-family: 'Outfit', sans-serif; font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; text-shadow: var(--purple-glow);"><i class="fa-solid fa-compass"></i> Career Interests</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem;">
+                <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted);"><i class="fa-solid fa-angle-right" style="color: var(--accent-primary); width: 12px;"></i> Full-Stack Web Development</li>
+                <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted);"><i class="fa-solid fa-angle-right" style="color: var(--accent-primary); width: 12px;"></i> Cloud-Native Applications &amp; DevOps</li>
+                <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted);"><i class="fa-solid fa-angle-right" style="color: var(--accent-primary); width: 12px;"></i> API Design &amp; System Architecture</li>
+                <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted);"><i class="fa-solid fa-angle-right" style="color: var(--accent-primary); width: 12px;"></i> Open Source Contributions</li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- Section Divider for Learnings -->
+        <h2 class="section-title" style="font-size: 1.75rem; margin-bottom: 0.5rem;">Core Web Technology Learnings</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem; font-size: 0.95rem;">Select a technology below to explore code examples, logic diagrams, and detailed concept notes.</p>
 
         <div class="learnings-layout">
           <!-- Learning selector sidebar -->
@@ -3480,45 +3574,75 @@ function ClaimsForm() {
 
         <div class="evaluations-grid">
           <!-- Evaluation 1 Card -->
-          <div class="glass-card eval-card">
-            <span class="evaluation-badge">Evaluation 1</span>
-            <h3>Course Registration System</h3>
-            <p>A static mockup utilizing HTML5 semantic scaffolding, custom CSS structures, and interactive client-side JavaScript for user validation and course sign-ups.</p>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-html5"></i> HTML <i class="fa-brands fa-css3-alt"></i> CSS <i class="fa-brands fa-js"></i> JS</span>
+          <div class="glass-card eval-card" style="cursor: pointer; padding: 0; overflow: hidden;">
+            <div class="eval-card-header" onclick="toggleEvalCard(this)" style="padding: 2rem; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+              <div>
+                <span class="evaluation-badge" style="position: static; display: inline-block; margin-bottom: 0.75rem;">Evaluation 1</span>
+                <h3 style="padding-right: 0; margin-bottom: 0;">Course Registration System</h3>
+              </div>
+              <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 1rem; transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem;"></i>
+            </div>
+            <div class="eval-card-body" style="max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease; padding: 0 2rem;">
+              <div style="padding-bottom: 1.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">A static mockup utilizing HTML5 semantic scaffolding, custom CSS structures, and interactive client-side JavaScript for user validation and course sign-ups.</p>
+                <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-html5"></i> HTML &nbsp;<i class="fa-brands fa-css3-alt"></i> CSS &nbsp;<i class="fa-brands fa-js"></i> JS</span>
+              </div>
             </div>
           </div>
 
           <!-- Evaluation 2 Card -->
-          <div class="glass-card eval-card">
-            <span class="evaluation-badge">Evaluation 2</span>
-            <h3>Waste Management Portal</h3>
-            <p>Backend dashboard logic powered by Node.js, mock WampServer connectivity, and relational query structures checking bin collection request workflows.</p>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-node-js"></i> Node.js <i class="fa-solid fa-database"></i> SQL (Wamp)</span>
+          <div class="glass-card eval-card" style="cursor: pointer; padding: 0; overflow: hidden;">
+            <div class="eval-card-header" onclick="toggleEvalCard(this)" style="padding: 2rem; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+              <div>
+                <span class="evaluation-badge" style="position: static; display: inline-block; margin-bottom: 0.75rem;">Evaluation 2</span>
+                <h3 style="padding-right: 0; margin-bottom: 0;">Waste Management Portal</h3>
+              </div>
+              <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 1rem; transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem;"></i>
+            </div>
+            <div class="eval-card-body" style="max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease; padding: 0 2rem;">
+              <div style="padding-bottom: 1.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">Backend dashboard logic powered by Node.js, mock WampServer connectivity, and relational query structures checking bin collection request workflows.</p>
+                <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-node-js"></i> Node.js &nbsp;<i class="fa-solid fa-database"></i> SQL (Wamp)</span>
+              </div>
             </div>
           </div>
 
-          <!-- Evaluation 3 Card -->
-          <div class="glass-card eval-card">
-            <span class="evaluation-badge">Evaluation 3</span>
-            <h3>Concert Booking Widget</h3>
-            <p>Interactive single-page React seat scheduler panel showcasing state changes, conditional style assignments, and automated ticket generation receipt cards.</p>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-react"></i> React.js <i class="fa-solid fa-bolt"></i> State Hooks</span>
+          <!-- Evaluation 3 Card — Music Concert Management System -->
+          <div class="glass-card eval-card" style="cursor: pointer; padding: 0; overflow: hidden;">
+            <div class="eval-card-header" onclick="toggleEvalCard(this)" style="padding: 2rem; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+              <div>
+                <span class="evaluation-badge" style="position: static; display: inline-block; margin-bottom: 0.75rem;">Evaluation 3</span>
+                <h3 style="padding-right: 0; margin-bottom: 0;">Music Concert Management System</h3>
+              </div>
+              <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 1rem; transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem;"></i>
+            </div>
+            <div class="eval-card-body" style="max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease; padding: 0 2rem;">
+              <div style="padding-bottom: 1.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">Interactive single-page React seat scheduler panel showcasing state changes, conditional style assignments, and automated ticket generation receipt cards.</p>
+                <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-react"></i> React.js &nbsp;<i class="fa-solid fa-bolt"></i> State Hooks</span>
+              </div>
             </div>
           </div>
 
           <!-- Evaluation 4 Card -->
-          <div class="glass-card eval-card">
-            <span class="evaluation-badge">Evaluation 4</span>
-            <h3>Insurance Management System</h3>
-            <p>A full-featured Node.js insurance system supporting customer checkout, policy editing, payment tracking, and agent reviews.</p>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-node-js"></i> Node.js <i class="fa-solid fa-database"></i> SQL (MySQL)</span>
-              <button onclick="openEvalModal('eval4')" class="eval-interactive-btn" style="margin-left: auto;">
-                <i class="fa-solid fa-image"></i> View App Mockups
-              </button>
+          <div class="glass-card eval-card" style="cursor: pointer; padding: 0; overflow: hidden;">
+            <div class="eval-card-header" onclick="toggleEvalCard(this)" style="padding: 2rem; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+              <div>
+                <span class="evaluation-badge" style="position: static; display: inline-block; margin-bottom: 0.75rem;">Evaluation 4</span>
+                <h3 style="padding-right: 0; margin-bottom: 0;">Insurance Management System</h3>
+              </div>
+              <i class="fa-solid fa-chevron-down" style="color: var(--text-muted); font-size: 1rem; transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem;"></i>
+            </div>
+            <div class="eval-card-body" style="max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease; padding: 0 2rem;">
+              <div style="padding-bottom: 1.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">A full-featured Node.js insurance system supporting customer checkout, policy editing, payment tracking, and agent reviews.</p>
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                  <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-brands fa-node-js"></i> Node.js &nbsp;<i class="fa-solid fa-database"></i> SQL (MySQL)</span>
+                  <button onclick="event.stopPropagation(); openEvalModal('eval4')" class="eval-interactive-btn" style="margin-left: auto; padding: 0.5rem 1.1rem; font-size: 0.85rem;">
+                    <i class="fa-solid fa-image"></i> View App Mockups
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -4985,38 +5109,84 @@ function ClaimsForm() {
       <section id="certifications" class="content-section">
         <h2 class="section-title">Certifications</h2>
         <p class="section-subtitle">A record of validated certificates and specialized skill badges acquired during my academic program.</p>
-        <div class="cert-layout-container">
-          <!-- Left: Certificate Image -->
-          <div class="cert-image-container">
-            <img src="images/devops_cert.png" alt="DevOps Basics for Everyone - IBM (edX)">
-          </div>
-          
-          <!-- Right: Summary Card -->
-          <div class="cert-summary-container glass-card">
-            <span class="cert-org-badge"><i class="fa-solid fa-graduation-cap"></i> IBM | edX</span>
-            <h3 class="cert-title-primary">DevOps Basics for Everyone</h3>
-            
-            <div class="cert-summary-points">
-              <h4>Course Coverage</h4>
-              <ul>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> DevOps fundamentals and culture</li>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> Continuous Integration and Continuous Delivery (CI/CD)</li>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> Agile and DevOps workflows</li>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> Automation concepts</li>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> Software Development Lifecycle (SDLC)</li>
-                <li><i class="fa-solid fa-check" style="color: var(--accent-primary); text-shadow: var(--text-glow);"></i> Cloud and software delivery fundamentals</li>
-              </ul>
+
+        <!-- IBM Verified Certificate Card -->
+        <div style="max-width: 860px; margin: 2rem auto;">
+          <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 20px rgba(14,255,239,0.08); overflow: hidden; position: relative; font-family: 'Inter', sans-serif;">
+
+            <!-- PREVIEW watermark -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 5rem; font-weight: 900; color: rgba(144,238,144,0.18); letter-spacing: 0.15em; pointer-events: none; z-index: 1; white-space: nowrap; user-select: none;">PREVIEW</div>
+
+            <!-- Header bar: IBM blue -->
+            <div style="background: #1d4ed8; padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="background: #ffffff; color: #1d4ed8; font-weight: 900; font-size: 1.1rem; padding: 0.3rem 0.6rem; border-radius: 4px; letter-spacing: 0.05em; font-family: 'Outfit', sans-serif;">IBM</div>
+                <span style="color: rgba(255,255,255,0.85); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em;">via edX / UniversityX</span>
+              </div>
+              <div style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">VERIFIED CERTIFICATE</div>
             </div>
-            
-            <div class="cert-skills-section">
-              <h4>Skills Gained</h4>
-              <div class="tech-pill-list" style="margin-bottom: 0;">
-                <span class="tech-pill highlight">DevOps</span>
-                <span class="tech-pill highlight">CI/CD</span>
-                <span class="tech-pill">Agile</span>
-                <span class="tech-pill">Automation</span>
-                <span class="tech-pill">SDLC</span>
-                <span class="tech-pill">Cloud Fundamentals</span>
+
+            <!-- Body -->
+            <div style="padding: 2rem 2.5rem; color: #1e293b; position: relative; z-index: 2;">
+
+              <!-- Top row: cert type + course ID -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                  <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin: 0 0 0.25rem 0; font-weight: 600;">Certificate of Achievement</p>
+                  <p style="font-size: 0.8rem; color: #94a3b8; margin: 0; font-family: 'Fira Code', monospace;">Course ID: CD0115EN</p>
+                </div>
+                <div style="text-align: right;">
+                  <p style="font-size: 0.75rem; color: #64748b; margin: 0 0 0.1rem 0;">Issued to</p>
+                  <p style="font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0; font-family: 'Outfit', sans-serif;">Subhash Reddy</p>
+                </div>
+              </div>
+
+              <!-- Course Title -->
+              <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem 0; font-family: 'Outfit', sans-serif; line-height: 1.2;">CD0115EN: DevOps Basics for Everyone</h2>
+              <p style="font-size: 0.9rem; color: #475569; margin: 0 0 1.5rem 0;">IBM via edX — Professional Learning Program</p>
+
+              <!-- Professors -->
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-chalkboard-user" style="color: #1d4ed8; font-size: 1rem;"></i>
+                <div>
+                  <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin: 0 0 0.2rem 0; font-weight: 600;">Instructors</p>
+                  <p style="font-size: 0.875rem; font-weight: 600; color: #1e293b; margin: 0;">Maurilio Pugliesi &amp; Justine Doe, Ph.D.</p>
+                </div>
+              </div>
+
+              <!-- Skills section -->
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin: 0 0 0.65rem 0; font-weight: 600;">Skills Learned</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">CI/CD</span>
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">Version Control</span>
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">Containerization</span>
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">Cloud Deployment</span>
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">Agile/DevOps Culture</span>
+                  <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 0.3rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600;">DevSecOps</span>
+                </div>
+              </div>
+
+              <!-- Divider -->
+              <div style="border-top: 1px solid #e2e8f0; margin-bottom: 1.25rem;"></div>
+
+              <!-- Footer row: actual cert image + edX badge -->
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-shield-check" style="color: #16a34a; font-size: 1.1rem;"></i>
+                  <span style="font-size: 0.8rem; color: #64748b;">Identity Verified &bull; Authentic IBM Learning Record</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: #1a1a1a; padding: 0.4rem 0.85rem; border-radius: 6px;">
+                  <span style="font-size: 0.7rem; color: #a78bfa; font-weight: 700; letter-spacing: 0.08em; font-family: 'Fira Code', monospace;">edX</span>
+                  <span style="font-size: 0.65rem; color: #94a3b8; border-left: 1px solid #374151; padding-left: 0.5rem;">UniversityX Platform</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actual Certificate Image -->
+            <div style="padding: 0 2.5rem 2rem 2.5rem;">
+              <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <img src="images/devops_cert.png" alt="DevOps Basics for Everyone - IBM (edX)" style="width: 100%; height: auto; display: block;">
               </div>
             </div>
           </div>
@@ -5190,7 +5360,7 @@ function ClaimsForm() {
   <div class="eval-modal" id="modal-eval3">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 style="color: var(--accent-primary);"><i class="fa-solid fa-flask"></i> Evaluation 3: Music Concert Booking Widget</h4>
+        <h4 style="color: var(--accent-primary);"><i class="fa-solid fa-flask"></i> Music Concert Management System</h4>
         <button class="modal-close" onclick="closeEvalModal('eval3')">&times;</button>
       </div>
       <div class="modal-body">
@@ -5892,6 +6062,26 @@ else if (req.url.startsWith("/submit-claim") && req.method === "POST") {
 
     function closeLightbox() {
       document.getElementById('diagram-lightbox').style.display = 'none';
+    }
+
+    // Toggle Eval Card Collapse/Expand
+    function toggleEvalCard(headerEl) {
+      const card = headerEl.closest('.eval-card');
+      const body = card.querySelector('.eval-card-body');
+      const icon = headerEl.querySelector('i.fa-chevron-down');
+      const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px' && body.style.maxHeight !== '0';
+
+      if (isOpen) {
+        body.style.maxHeight = '0';
+        body.style.padding = '0 2rem';
+        if (icon) icon.style.transform = 'rotate(0deg)';
+        card.style.borderColor = '';
+      } else {
+        body.style.maxHeight = body.scrollHeight + 200 + 'px';
+        body.style.padding = '0 2rem';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        card.style.borderColor = 'var(--border-hover)';
+      }
     }
 
     // Toggle Accordion Panels in Core Learnings
